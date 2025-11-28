@@ -4,9 +4,9 @@ import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
 from langchain_core.documents import Document
-from langchain_community.document_loaders import UnstructuredLoader
+from langchain_community.document_loaders import UnstructuredPDFLoader
 
-loader = UnstructuredLoader("./arquivos/relatorio_vendas.pdf", mode="elements")
+loader = UnstructuredPDFLoader("./arquivos/relatorio_vendas.pdf", mode="elements")
 docs_unstructured = loader.load()
 
 docs_com_metadados = []
@@ -29,11 +29,9 @@ for doc in docs_unstructured:
     novos_metadados['ingestion_date'] = datetime.now().strftime('%Y-%m-%d')
     novos_metadados['data_owner'] = 'Departamento de vendas'
 
-    docs_com_metadados = Document(
-        page_content=doc.page_content,
-        metadata=novos_metadados
+    docs_com_metadados.append(
+        Document(page_content=doc.page_content, metadata=novos_metadados)
     )
-    docs_com_metadados.append(docs_com_metadados)
 
     print(f"Total de documentos com metadados: {len(docs_com_metadados)}")
     print(docs_com_metadados[-1])
