@@ -1,0 +1,15 @@
+# Dependências principais do projeto
+python-dotenv==1.2.1
+
+# LangChain
+langchain-core==1.0.3
+langchain-community==0.4.1
+langchain-google-genai==3.0.0
+langchain-pinecone==0.2.13
+
+# Pinecone
+pinecone[asyncio]==7.3.0
+
+# Outras dependências
+numpy>=1.26.4,!=2.0.2
+
