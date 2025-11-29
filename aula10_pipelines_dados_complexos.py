@@ -1,6 +1,4 @@
 import os
-import duckdb
-import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv
 from langchain_core.documents import Document
